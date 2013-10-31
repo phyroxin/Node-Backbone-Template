@@ -1,0 +1,18 @@
+!!!5
+html
+	head
+		title #{title} | FriendScape 
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		meta(name='viewport', content='width=device-width', initial-scale='1.0', maximum-scale='1', user-scalable='no')
+	body
+		header
+			h1 Friend Scape
+		.container
+			.main-content
+				block content
+		footer
+			p Running on Node with Express, Jade & Stylus
+		script(src='./libs/jquery-v1.10.2.js')
+		script(src='./libs/underscore.js')
+		script(src='./libs/backbone.js')
+		script(src='./libs/app.js')
