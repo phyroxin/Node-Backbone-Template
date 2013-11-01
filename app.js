@@ -45,6 +45,8 @@ if ('development' == app.get('env')) {
  *========================================================
  */
 app.get('/', model.index);
+app.get('/api/friends', model.getAll);
+app.get('/api/addfriend/:name', model.addFriend);
 
 /*========================================================
  * Start server

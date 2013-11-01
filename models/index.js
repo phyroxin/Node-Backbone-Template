@@ -18,7 +18,7 @@ collection.find({}, function(err, docs){
 	}
 	else{
 		console.log('Couldn\'t find nodetest2 collection, creating with sample data...');
-		//populateDB();
+		populateDB();
 	}
 });
 
@@ -40,27 +40,40 @@ exports.newuser = function(req, res){
 	});
 };
 
-exports.adduser = function(req, res){
-	// Get our form values
-	var userName	= req.body.username;
-	var userEmail	= req.body.useremail;
+exports.getAll = function(req, res){
 	
+	var collection = db.get('friendcollection');
+	collection.find({},{},function(err, doc){
+		if(err){
+			console.log('No results found');
+			res.send('No results found');
+		}
+		else{
+			res.send(doc);
+		}
+	});
+	
+}
+
+exports.addFriend = function(req, res){
+	// Get our form values
+	var friend	= req.params.name;
+	console.log(friend);
 	// Set our collection
-	var collection = db.get('usercollection');
+	var collection = db.get('friendcollection');
 	
 	// Submit to the DB
 	collection.insert({
-		 'username'	:userName
-		,'email'	:userEmail
+		 'name'	:friend
 	}, function(err, doc){
 		if(err){
 			// If it failed, return error
 			res.send('There was a problem adding the information to the database.');
 		}
 		else{
-			console.log('Name: '+userName+' and email: '+userEmail+' inserted successfully!');
+			console.log('Name: '+friend+' inserted successfully!');
 			// If it worked, forward to success page
-			res.redirect('about');
+			res.send({'name':friend});
 		}
 	});
 };
@@ -134,36 +147,16 @@ var populateDB = function() {
 
     var users = [
 	{
-         username: "Lamin"
-        ,email: "me@me.com"
+         name: "Lamin"
     }
 	,{
-         username: "Bob"
-        ,email: "bob@bob.com"
+         name: "Bob"
     }
 	,{
-         username: "John"
-        ,email: "john@john.com"
+         name: "John"
     }
 	,{
-         username: "Jill"
-        ,email: "jill@jill.com"
-    }
-	,{
-         username: "Rita"
-        ,email: "rita@rita.com"
-    }
-	,{
-         username: "Jay"
-        ,email: "jay@jay.com"
-    }
-	,{
-         username: "Marge"
-        ,email: "marge@marge.com"
-    }
-	,{
-         username: "Sue"
-        ,email: "sue@sue.com"
+         name: "Jill"
     }];
 
 	collection.insert(users, function(err, result) {
