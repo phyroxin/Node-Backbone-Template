@@ -145,19 +145,25 @@ header h1 {
     width: 100%;
   }
 }
-.main-content {
+.main-content,
+.backboneSandbox,
+.underscoreTemp {
   float: left;
   width: 300px;
   padding: 10px;
 }
 @media (min-width: 440px) and (max-width: 939px) {
-  .main-content {
+  .main-content,
+  .backboneSandbox,
+  .underscoreTemp {
     width: 65%;
     padding: 5px;
   }
 }
 @media (min-width: 200px) and (max-width: 439px) {
-  .main-content {
+  .main-content,
+  .backboneSandbox,
+  .underscoreTemp {
     width: 100%;
     padding: 5px;
     float: left;
